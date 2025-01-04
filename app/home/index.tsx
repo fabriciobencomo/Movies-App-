@@ -4,9 +4,10 @@ import { ActivityIndicator } from 'react-native'
 import { useMovies } from '@/presentation/hooks/useMovies'
 import  MainSlideShow  from '@/presentation/components/Movies/MainSlideShow'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import MovieHorizontal from '@/presentation/components/Movies/MovieHorizontal'
 
 const HomeScreen = () => {
-  const { nowPlayingQuery } = useMovies();
+  const { nowPlayingQuery, popularQuery } = useMovies();
 
   const safeArea = useSafeAreaInsets();
 
@@ -24,6 +25,8 @@ const HomeScreen = () => {
       <Text className='text-3xl font-bold px-4 mb-2'>Movies App</Text>
       {/* Carousel of Movies */}
       <MainSlideShow movies={ nowPlayingQuery.data ?? []} />
+      {/* Popular Movies */}
+      <MovieHorizontal title='Popular Movies' movies={popularQuery.data ?? []}/>
     </View>
   )
 }
